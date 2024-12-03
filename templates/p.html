@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select, input[type="number"], button {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .confirmation {
+            display: none;
+            background-color: #d4edda;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .confirmation p {
+            margin: 0;
+        }
+
+        .confirmation h3 {
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Movie Ticket Booking {{name}}</h1>
+
+    <form id="ticketForm">
+        <label for="movie">Select Movie:</label>
+        <select id="movie" required>
+            <option value="">--Select Movie--</option>
+            <option value="Movie A">Movie A</option>
+            <option value="Movie B">Movie B</option>
+            <option value="Movie C">Movie C</option>
+        </select>
+
+        <label for="tickets">Number of Tickets:</label>
+        <input type="number" id="tickets" min="1" required>
+
+        <button type="submit">Book Tickets</button>
+    </form>
+
+    <div class="confirmation" id="confirmationMessage">
+        <h3>Booking Confirmed!</h3>
+        <p id="confirmationDetails"></p>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById("ticketForm");
+    const confirmationMessage = document.getElementById("confirmationMessage");
+    const confirmationDetails = document.getElementById("confirmationDetails");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const movie = document.getElementById("movie").value;
+        const tickets = document.getElementById("tickets").value;
+
+        if (movie && tickets) {
+            confirmationMessage.style.display = "block";
+            confirmationDetails.textContent = `You have successfully booked ${tickets} ticket(s) for ${movie}.`;
+        }
+    });
+</script>
+
+</body>
+</html>
